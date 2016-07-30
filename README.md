@@ -53,7 +53,7 @@ const session = createSession({
 });
 ```
 
-### Throttling Storage Calls
+## Throttling "Save to Storage" Calls
 
 Because your Redux state could potentially be updated several times a second, it's a good idea to limit how often state changes are evaluated and stored.  By default, the middleware waits 2 seconds between each call to the adapter's `set()` method.  You can specify a custom throttling limit using the `throttle` option.
 
