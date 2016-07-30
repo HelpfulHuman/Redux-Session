@@ -2,6 +2,12 @@ import adapters from './adapters/index';
 import { getAdapter, debounce } from './utils';
 
 /**
+ * Valid namespace definition
+ * @type {RegExp}
+ */
+const VALID_NS = /[a-zA-Z0-9\.]/;
+
+/**
  * Default options for middleware.
  * @type {Object}
  */
@@ -31,6 +37,11 @@ export default function reduxSessionMiddleware (opts = {}) {
 
   // get the namespace from the options
   const { ns } = opts;
+
+  // validate the given namespace
+  if (typeof ns !== 'string' || ! VALID_NS.test(ns)) {
+    throw new Error('You must provide a valid namespace "ns" for your project!');
+  }
 
   // determine the storage adapter
   const storage = getAdapter(adapters, opts.adapter);
