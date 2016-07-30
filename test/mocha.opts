@@ -1,2 +1,3 @@
+--require mock-local-storage
 --compilers js:buble/register
 --recursive
