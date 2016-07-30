@@ -1,0 +1,2 @@
+--compilers js:buble/register
+--recursive
