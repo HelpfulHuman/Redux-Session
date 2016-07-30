@@ -1,4 +1,4 @@
-import adapters from './adapters';
+import adapters from './adapters/index';
 import { getAdapter, debounce } from './utils';
 
 /**
