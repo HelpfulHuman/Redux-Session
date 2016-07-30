@@ -1,25 +1,4 @@
 /**
- * Check if the given object has the specified properties.
- *
- * @param  {Array} props
- * @param  {Object} obj
- * @return {Bool}
- */
-export function hasProperties (props, obj) {
-  for (let prop in props) {
-    if ( ! obj.hasOwnProperty(prop)) return false;
-  }
-
-  return true;
-}
-
-/**
- * The methods that a storage adapter must implement.
- * @type {Array}
- */
-const STORAGE_SHAPE = ['get', 'set', 'has', 'clear'];
-
-/**
  * Returns the appropriate adapter based on the given adapter
  * argument from options.
  *
@@ -29,7 +8,7 @@ const STORAGE_SHAPE = ['get', 'set', 'has', 'clear'];
 export function getAdapter (adapters, adapter) {
   // if the adapter is an object that implements the needed methods,
   // quickly return it
-  if (typeof adapter === 'object' && hasProperties(STORAGE_SHAPE, obj)) {
+  if (typeof adapter === 'object' && adapter.get && adapter.set && adapter.has && adapter.clear) {
     return adapter;
   }
 
@@ -43,7 +22,7 @@ export function getAdapter (adapters, adapter) {
     return adapters[adapter];
   }
 
-  throw new Error('A valid storage adapter could not be found!  You can use one of the default adapters by setting adapter to "localStorage", "sessionStorage" or "cookieStorage".  Or, if you need something custom, you can provide a simple adapter object with set(), get(), has() and clear() methods.');
+  throw new Error('A valid storage adapter could not be found!  You can use one of the default adapters by setting adapter to "localStorage" or "cookieStorage".  Or, if you need something custom, you can provide a simple adapter object with set(), get(), has() and clear() methods.');
 }
 
 /**

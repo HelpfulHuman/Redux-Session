@@ -13,7 +13,7 @@ const VALID_NS = /[a-zA-Z0-9\.]/;
  */
 const defaultOpts = {
   throttle: 2000,
-  pick (state) {
+  selectState (state) {
     return state;
   },
   onLoad (storedState, dispatch) {
@@ -46,23 +46,29 @@ export default function reduxSessionMiddleware (opts = {}) {
   // determine the storage adapter
   const storage = getAdapter(adapters, opts.adapter);
 
-  return function (store) {
-    // watch for redux store changes so we can store them
-    store.subscribe(debounce(function () {
-      const state = opts.pick(store.getState());
+  return function ({ getState, dispatch }) {
+    // the function that will update storage
+    const updateStorage = debounce(function () {
+      const state = opts.selectState(getState());
       storage.set(ns, state, opts);
-    }, opts.throttle));
+    }, opts.throttle);
 
     // dispatch action to hydrate state (if any)
     if (storage.has(ns, opts)) {
-      opts.onLoad(storage.get(ns, opts), store.dispatch);
+      opts.onLoad(storage.get(ns, opts), dispatch);
     }
 
     return next => action => {
+      // check if we should clear storage based on the given action
       if (opts.clearStorage(action)) {
         storage.clear(ns, opts);
       }
-      next();
+
+      // move the action along...
+      next(action);
+
+      // ...and refresh storage!
+      updateStorage();
     }
   }
 }
