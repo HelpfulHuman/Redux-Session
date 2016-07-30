@@ -68,6 +68,8 @@ const session = createSession({
 
 When your store is created and the session middleware is initialized, it will attempt to find state that has previously been stored at the set namespace.  It does so by invoking the adapters `has()` method before fetching the data with the adapter's `get()` method.  Once the stored state has been retrieved it is passed to the `onLoad` option to dispatch the hydration action.  You can specify a custom function to dispatch custom action(s) for hydration.
 
+> **Note:** By default, `redux-session` dispatches the stored state data as a `storedData` in an action with the type of `LOAD_STORED_STATE`.
+
 ```js
 const session = createSession({
   ns: 'myproject',
