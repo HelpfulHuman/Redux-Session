@@ -7,7 +7,7 @@ export default {
    * @param  {*}
    */
   set (name, data) {
-    localStorage.setItem(name + '.root', JSON.stringify(data));
+    window.localStorage.setItem(name + '.root', JSON.stringify(data));
   },
 
   /**
@@ -17,7 +17,7 @@ export default {
    * @return {*}
    */
   get (name) {
-    return JSON.parse(localStorage.getItem(name + '.root'));
+    return JSON.parse(window.localStorage.getItem(name + '.root'));
   },
 
   /**
@@ -27,7 +27,7 @@ export default {
    * @return {Boolean}
    */
   has (name) {
-    return !!localStorage.getItem(name + '.root');
+    return !!window.localStorage.getItem(name + '.root');
   },
 
   /**
@@ -36,7 +36,7 @@ export default {
    * @param  {String} name
    */
   clear (name) {
-    localStorage.removeItem(name + '.root');
+    window.localStorage.removeItem(name + '.root');
   }
 
 };
