@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "Automatically cache parts (or all) of your state in localStorage, sessionStorage or cookies.",
   "main": "dist/index.js",
+  "jsnext:main": "src/index.js",
   "scripts": {
+    "clean": "rm -r dist/",
     "build": "rollup -c",
     "watch": "npm run build -- --watch",
     "test": "mocha",
-    "tdd": "npm run test -- --watch"
+    "tdd": "npm run test -- --watch",
+    "prepublish": "npm run clean && npm run test && npm run build"
   },
   "repository": {
     "type": "git",
