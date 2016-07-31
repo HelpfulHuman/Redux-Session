@@ -26,6 +26,23 @@ export function getAdapter (adapters, adapter) {
 }
 
 /**
+ * Returns a new object that omits the keys in the given array.
+ *
+ * @param  {Array} keys
+ * @param  {Object} obj
+ * @return {Object}
+ */
+export function shallowOmit (keys, obj) {
+  let j = {}, k;
+  for (let k in obj) {
+    if (keys.indexOf(k) === -1) {
+      j[k] = obj[k];
+    }
+  }
+  return j;
+}
+
+/**
  * Returns a throttled method that can only be invoked once per the
  * time duration specified.
  *
