@@ -1,5 +1,6 @@
-import adapters from './adapters/index';
 import { getAdapter, debounce } from './utils';
+import localStorage from './adapters/localStorage';
+import cookieStorage from './adapters/cookieStorage';
 
 /**
  * Valid namespace definition
@@ -25,13 +26,19 @@ const defaultOpts = {
 };
 
 /**
+ * The built-in adapters that are provided by this library.
+ * @type {Object}
+ */
+export const adapters = { localStorage, cookieStorage };
+
+/**
  * Returns a new middleware function for Redux using the given
  * parameters.
  *
  * @param  {Object} opts
  * @return {Function}
  */
-export default function reduxSessionMiddleware (opts = {}) {
+export function createSession (opts = {}) {
   // define our default options
   opts = Object.assign({}, defaultOpts, opts);
 
