@@ -86,16 +86,17 @@ export function createSession (opts = {}) {
     }
 
     return next => action => {
-      // check if we should clear storage based on the given action
-      if (opts.clearStorage(action)) {
-        storage.clear(ns, _opts);
-      }
+      // flag for whether storage should be cleared.
+      const shouldClearStorage = opts.clearStorage(action);
 
-      // move the action along...
+      // clear storage if needed
+      if (shouldClearStorage) storage.clear(ns, _opts);
+
+      // otherwise, update storage with the latest
+      else updateStorage();
+
+      // dispatch the action
       next(action);
-
-      // ...and refresh storage!
-      updateStorage();
     }
   }
 }
