@@ -9,7 +9,7 @@ With Redux, we can keep our state managed in one place and allow "middleware" to
 This library has support for both ES2015 and ES5 (browser).  Simply run `npm install redux-session` and import the library.
 
 ```js
-import createSession from 'redux-session';
+import { createSession } from 'redux-session';
 ```
 
 > **Note:** This library does make use of `Object.assign()` so make sure you have a polyfill if you plan to support browsers that don't implement this method.
@@ -22,7 +22,7 @@ This is all you need to persist your state data to a stored session.  When chang
 
 ```js
 import { createStore, applyMiddleware } from 'redux';
-import createSession from 'redux-session';
+import { createSession } from 'redux-session';
 
 function reducer (state = {}, action) {
   switch (action.type) {
