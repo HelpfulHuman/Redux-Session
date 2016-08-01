@@ -10,7 +10,7 @@
     "watch": "npm run build -- --watch",
     "test": "mocha",
     "tdd": "npm run test -- --watch",
-    "prepublish": "npm run clean && npm run test && npm run build"
+    "prepublish": "npm run clean && npm run build && npm run test"
   },
   "repository": {
     "type": "git",

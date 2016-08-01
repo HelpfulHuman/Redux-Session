@@ -1,7 +1,7 @@
 global.window = {};
 
 const { expect } = require('chai');
-const { adapters } = require('../dist/index');
+const { adapters } = require('../');
 const { mockLocalStorage } = require('./utils');
 const adapter = adapters.localStorage;
 

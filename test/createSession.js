@@ -1,6 +1,6 @@
 const chai = require('chai');
 const { expect } = chai;
-const { createSession } = require('../dist/index');
+const { createSession } = require('../');
 const { mockAdapter, mockStore } = require('./utils');
 const { spy, stub } = require('sinon');
 
