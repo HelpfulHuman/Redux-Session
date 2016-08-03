@@ -7,7 +7,7 @@
   "scripts": {
     "preversion": "npm test",
     "version": "npm run build",
-    "postversion": "git push && git push --tags && rm -rf build/temp",
+    "postversion": "git push origin master && git push origin master --tags",
     "clean": "rm -rf dist/",
     "build": "rollup -c",
     "watch": "npm run build -- --watch",
