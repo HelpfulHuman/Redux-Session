@@ -1,10 +1,13 @@
 {
   "name": "redux-session",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automatically cache parts (or all) of your state in localStorage, sessionStorage or cookies.",
   "main": "dist/index.js",
   "jsnext:main": "src/index.js",
   "scripts": {
+    "preversion": "npm test",
+    "version": "npm run build",
+    "postversion": "git push origin master && git push origin master --tags",
     "clean": "rm -rf dist/",
     "build": "rollup -c",
     "watch": "npm run build -- --watch",
