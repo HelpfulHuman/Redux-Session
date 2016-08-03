@@ -1,6 +1,6 @@
 import { getAdapter, debounce, shallowOmit } from './utils';
-import localStorage from './adapters/localStorage';
-import cookieStorage from './adapters/cookieStorage';
+import localStorageAdapter from './adapters/localStorage';
+import cookieStorageAdapter from './adapters/cookieStorage';
 
 /**
  * Valid namespace definition
@@ -41,7 +41,10 @@ const defaultOpts = {
  * The built-in adapters that are provided by this library.
  * @type {Object}
  */
-export const adapters = { localStorage, cookieStorage };
+export const adapters = {
+  localStorage: localStorageAdapter,
+  cookieStorage: cookieStorageAdapter
+};
 
 /**
  * Returns a new middleware function for Redux using the given

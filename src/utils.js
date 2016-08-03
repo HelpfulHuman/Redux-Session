@@ -14,7 +14,7 @@ export function getAdapter (adapters, adapter) {
 
   // if no adapter provided, assume one
   if ( ! adapter) {
-    adapter = (typeof window !== 'undefined' && window.localStorage ? 'localStorage' : 'cookieStorage');
+    adapter = (window.localStorage ? 'localStorage' : 'cookieStorage');
   }
 
   // use one of the provides adapters
