@@ -6,7 +6,7 @@
   "jsnext:main": "src/index.js",
   "scripts": {
     "preversion": "npm test",
-    "version": "npm run build && git add -A dist",
+    "version": "npm run build",
     "postversion": "git push && git push --tags && rm -rf build/temp",
     "clean": "rm -rf dist/",
     "build": "rollup -c",
