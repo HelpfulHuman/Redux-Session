@@ -1,6 +1,6 @@
 {
   "name": "redux-session",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "Automatically cache parts (or all) of your state in localStorage, sessionStorage or cookies.",
   "main": "dist/index.js",
   "jsnext:main": "src/index.js",
