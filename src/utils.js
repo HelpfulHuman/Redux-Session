@@ -50,14 +50,21 @@ export function shallowOmit (keys, obj) {
  * @param  {Number} wait
  */
 export function debounce (fn, wait) {
-  let timeout;
+  let timeout, dirty;
 
   return function () {
-    if (timeout) return;
+    if (timeout) {
+      dirty = true;
+      return;
+    }
 
     timeout = setTimeout(function () {
       clearTimeout(timeout);
       timeout = null;
+      if (dirty) {
+        fn.apply(this, arguments);
+        dirty = false;
+      }
     }, wait);
 
     fn.apply(this, arguments);
