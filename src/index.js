@@ -78,7 +78,7 @@ export function createSession (opts = {}) {
 
   return function ({ getState, dispatch }) {
     // the function that will update storage
-    const updateStorage = debounce(function () {
+    const updateStorage = (opts.debounce || debounce)(function () {
       const state = opts.selectState(getState());
       storage.set(ns, state, _opts);
     }, opts.throttle);
