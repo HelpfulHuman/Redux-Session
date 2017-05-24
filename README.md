@@ -117,7 +117,7 @@ const session = createSession({
 
 ## Clearing Stored State
 
-Finally, if you want to clear your stored session data completely, you can dispatch an action your store with the type of `CLEARED_STORED_STATE`.  The session middleware will watch for this action to invoke the adapter's `clear()` method.  You can optionally specify a custom `clearStorage` function to spy on actions and determine if the stored state should be dropped.
+Finally, if you want to clear your stored session data completely, you can dispatch an action your store with the type of `CLEAR_STORED_STATE`.  The session middleware will watch for this action to invoke the adapter's `clear()` method.  You can optionally specify a custom `clearStorage` function to spy on actions and determine if the stored state should be dropped.
 
 ```js
 const session = createSession({
