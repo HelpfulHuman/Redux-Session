@@ -83,12 +83,13 @@ export function createSession (opts = {}) {
       storage.set(ns, state, _opts);
     }, opts.throttle);
 
-    // dispatch action to hydrate state (if any)
-    if (storage.has(ns, _opts)) {
-      opts.onLoad(storage.get(ns, _opts), dispatch);
-    }
-
     return next => action => {
+      
+      // dispatch action to hydrate state (if any)
+      if (storage.has(ns, _opts)) {
+        opts.onLoad(storage.get(ns, _opts), next);
+      }
+
       // dispatch the action
       next(action);
 
