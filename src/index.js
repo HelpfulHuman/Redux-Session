@@ -90,7 +90,7 @@ export function createSession (opts = {}) {
 
     return next => action => {
       // dispatch the action
-      next(action);
+      const result = next(action);
 
       // flag for whether storage should be cleared.
       const shouldClearStorage = opts.clearStorage(action);
@@ -100,6 +100,8 @@ export function createSession (opts = {}) {
 
       // otherwise, update storage with the latest
       else updateStorage();
+
+      return result;
     }
   }
 }

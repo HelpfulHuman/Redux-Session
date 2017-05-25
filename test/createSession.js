@@ -200,4 +200,14 @@ describe('createSession()', function () {
     expect(testAdapter.set).to.have.been.calledWith(ns, selectedState);
   });
 
+  it('the created middleware chains the passed action', function () {
+    const action = { type: 'TEST' };
+    const session = createSession({ ns, adapter: testAdapter });
+    testStore.dispatch.withArgs(action).returns(action);
+
+    const result = session(testStore)(testStore.dispatch)(action);
+
+    expect(testStore.dispatch).to.have.been.calledWith(action);
+    expect(result).to.be.equal(action);
+  });
 });
