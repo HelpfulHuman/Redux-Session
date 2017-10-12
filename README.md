@@ -115,6 +115,40 @@ const session = createSession({
 });
 ```
 
+## Debouncing
+A custom debouncing method can be passed in via the opts if you want to override the default method. This function wraps around the call to update the session storage and prevents it from being updated too many times in the same interval. The default function will simply return if the update was called within the designated interval, however a custom function can be used if any other actions need to take place during the debounce method.
+
+```js
+function myDebouncer(fn, wait) {
+  console.log("this is my custom debouncer");
+  // do some custom stuff!
+  let timeout, dirty;
+
+  return function () {
+    if (timeout) {
+      dirty = true;
+      return;
+    }
+
+    timeout = setTimeout(function () {
+      clearTimeout(timeout);
+      timeout = null;
+      if (dirty) {
+        fn.apply(this, arguments);
+        dirty = false;
+      }
+    }, wait);
+
+    fn.apply(this, arguments);
+  }
+}
+
+const session = createSession({
+  ns: 'myproject',
+  debounce: myDebouncer
+});
+```
+
 ## Clearing Stored State
 
 Finally, if you want to clear your stored session data completely, you can dispatch an action your store with the type of `CLEAR_STORED_STATE`.  The session middleware will watch for this action to invoke the adapter's `clear()` method.  You can optionally specify a custom `clearStorage` function to spy on actions and determine if the stored state should be dropped.
