@@ -1,8 +1,11 @@
 import buble from 'rollup-plugin-buble';
 
 export default {
-  entry: 'src/index.js',
-  format: 'cjs',
+  input: 'src/index.js',
+  output: {
+    file: 'dist/index.js',
+    format: 'cjs',
+  },
+  exports: 'named',
   plugins: [ buble() ],
-  dest: 'dist/index.js'
 };

@@ -35,14 +35,14 @@
   },
   "homepage": "https://github.com/helpfulhuman/redux-session#readme",
   "devDependencies": {
-    "buble": "^0.12.5",
     "chai": "^3.5.0",
     "mocha": "^2.5.3",
     "mock-local-storage": "^1.0.2",
-    "rollup": "^0.34.1",
-    "rollup-plugin-buble": "^0.12.1",
-    "rollup-watch": "^2.5.0",
+    "rollup": "^0.50.0",
+    "rollup-plugin-buble": "^0.16.0",
+    "rollup-watch": "^4.3.1",
     "sinon": "^1.17.5",
     "sinon-chai": "^2.8.0"
-  }
+  },
+  "dependencies": {}
 }
